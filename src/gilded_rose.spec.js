@@ -34,5 +34,13 @@ test("The *quality* of an item is never negative", () => {
 
 test("\"Aged Brie\" actually increases in *quality* the older it gets", () => {
   expect(items[1].quality).toBeGreaterThanOrEqual(1);
-  expect(items[1].quality).toBeGreaterThanOrEqual(1);
+  expect(items[1].sell_in).toBeGreaterThanOrEqual(1);
 });
+
+test("The *quality* of an item is never more than 50 - Aged Brie", () => {
+  for (var i = 0; i < 50; i++) { // more than 50 days
+    items = update_quality(items);
+  }
+  expect(items[1].quality).toBeLessThanOrEqual(50);
+});
+
