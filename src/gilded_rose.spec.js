@@ -44,3 +44,9 @@ test("The *quality* of an item is never more than 50 - Aged Brie", () => {
   expect(items[1].quality).toBeLessThanOrEqual(50);
 });
 
+test("\"Sulfuras\", being a legendary item, never has to be sold nor does it decrease in *quality*", () => {
+  for (var i = 0; i < 10; i++) { // more than 50 days
+    items = update_quality(items);
+  }
+  expect(items[3].quality).toBe(80);
+});
