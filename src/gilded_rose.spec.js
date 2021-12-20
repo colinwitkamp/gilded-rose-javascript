@@ -45,8 +45,28 @@ test("The *quality* of an item is never more than 50 - Aged Brie", () => {
 });
 
 test("\"Sulfuras\", being a legendary item, never has to be sold nor does it decrease in *quality*", () => {
-  for (var i = 0; i < 10; i++) { // more than 50 days
+  for (var i = 0; i < 10; i++) {
     items = update_quality(items);
   }
   expect(items[3].quality).toBe(80);
+});
+
+test(`"Backstage passes", like aged brie, increases in *quality* as it's *sell_in*
+value decreases; *quality* increases by 2 when there are 10 days or less
+and by 3 when there are 5 days or less but *quality* drops to 0 after the
+concert`, () => {
+
+  expect(items[4].quality).toBe(21);
+  for (var i = 0; i < 4; i++) { // 5 days passed (1 day already passed in beforeEach)
+    items = update_quality(items);
+  }
+  expect(items[4].quality).toBe(25);
+
+  for (var i = 0; i < 5; i++) { // 5 days passed
+    items = update_quality(items);
+  }
+  expect(items[4].quality).toBe(35);
+
+  items = update_quality(items);
+  expect(items[4].quality).toBe(38);
 });
