@@ -31,3 +31,8 @@ test("Once the *sell_in* days is less then zero, *quality* degrades twice as fas
 test("The *quality* of an item is never negative", () => {
   expect(items[7].quality).toBeGreaterThanOrEqual(0);
 });
+
+test("\"Aged Brie\" actually increases in *quality* the older it gets", () => {
+  expect(items[1].quality).toBeGreaterThanOrEqual(1);
+  expect(items[1].quality).toBeGreaterThanOrEqual(1);
+});
