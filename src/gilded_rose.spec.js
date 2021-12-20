@@ -70,3 +70,8 @@ concert`, () => {
   items = update_quality(items);
   expect(items[4].quality).toBe(38);
 });
+
+test(`"Conjured" items degrade in *quality* twice as fast as normal items`, () => {
+  expect(items[5].quality).toBe(4);
+  expect(items[5].sell_in).toBe(2);
+});
